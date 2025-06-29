@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodCourt - Kantin Digital | {% block title %}{% endblock %}</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS (minimal, for global styles or overrides) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white shadow-lg py-4">
+        <nav class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+            <div class="logo mb-4 md:mb-0">
+                <a href="{{ url_for('index') }}" class="text-3xl font-extrabold tracking-tight hover:text-green-200 transition duration-300">FoodCourt</a>
+            </div>
+            <ul class="flex flex-wrap justify-center items-center gap-4 text-lg font-medium">
+                <li><a href="{{ url_for('menu_list') }}" class="hover:text-green-200 transition duration-300">Menu</a></li>
+                <li><a href="{{ url_for('cart') }}" class="hover:text-green-200 transition duration-300">Keranjang</a></li>
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('dashboard') }}" class="hover:text-green-200 transition duration-300">Dashboard</a></li>
+                    <li><span class="text-green-100">Halo, <strong class="font-semibold">{{ session['username'] }}</strong>!</span></li>
+                    <li><a href="{{ url_for('logout') }}" class="bg-white text-green-700 px-4 py-2 rounded-full shadow-md hover:bg-green-100 transition duration-300">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" class="hover:text-green-200 transition duration-300">Login</a></li>
+                    <li><a href="{{ url_for('register') }}" class="bg-green-700 text-white px-4 py-2 rounded-full shadow-md hover:bg-green-800 transition duration-300">Daftar</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-xl flex-grow mb-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="mb-6">
+                {% for category, message in messages %}
+                    <li class="flash-message {{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 text-center text-sm">
+        <p>&copy; 2025 FoodCourt - Kantin Digital. Dibuat oleh Group 3.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

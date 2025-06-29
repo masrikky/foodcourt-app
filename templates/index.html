@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Beranda{% endblock %}
+
+{% block content %}
+<!-- Hero Section - Lebih Megah dan Profesional -->
+<section class="relative bg-cover bg-center h-[70vh] md:h-[85vh] flex items-center justify-center text-white overflow-hidden rounded-xl shadow-2xl"
+         style="background-image: url('{{ url_for('static', filename='images/hero_banner.jpg') }}');">
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r from-green-800 via-green-700 to-green-600 opacity-90"></div>
+    
+    <div class="container mx-auto px-6 text-center relative z-10 animate-fade-in-up">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight drop-shadow-2xl">
+            Solusi Kantin Digital Terdepan untuk Era Modern
+        </h1>
+        <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto font-light leading-relaxed opacity-95">
+            Nikmati kemudahan memesan makanan favoritmu, kelola kantin dengan efisien, dan rasakan pengalaman kuliner tanpa batas.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="{{ url_for('menu_list') }}" 
+               class="bg-white text-green-700 hover:bg-green-100 font-bold py-4 px-10 rounded-full shadow-xl 
+                      transform hover:scale-105 transition duration-300 ease-in-out text-lg tracking-wide 
+                      focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
+                Jelajahi Menu Sekarang!
+            </a>
+            <a href="#how-it-works" 
+               class="bg-transparent text-white border-2 border-white hover:bg-white hover:text-green-700 
+                      font-bold py-4 px-10 rounded-full shadow-xl transform hover:scale-105 
+                      transition duration-300 ease-in-out text-lg tracking-wide 
+                      focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
+                Pelajari Cara Kerja
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section - Lebih Menarik dengan Alur Pemesanan -->
+<section id="how-it-works" class="py-20 bg-gray-50 rounded-lg shadow-xl mt-12">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-16 leading-tight">Proses Pemesanan Super Cepat!</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Step 1: Jelajahi Menu -->
+            <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 animate-fade-in-delay-1">
+                <div class="bg-blue-600 text-white p-6 rounded-full mb-6 shadow-xl relative">
+                    <img src="{{ url_for('static', filename='images/explore_menu.gif') }}" alt="Jelajahi Menu" class="w-16 h-16 object-contain">
+                    <span class="absolute -top-3 -right-3 bg-blue-800 text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">1</span>
+                </div>
+                <h3 class="text-3xl font-semibold text-gray-800 mb-4">1. Jelajahi Menu</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">Telusuri aneka hidangan lezat dari berbagai kantin mitra FoodCourt. Filter, cari, dan temukan favoritmu dengan mudah.</p>
+            </div>
+
+            <!-- Step 2: Pesan & Bayar -->
+            <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 animate-fade-in-delay-2">
+                <div class="bg-green-600 text-white p-6 rounded-full mb-6 shadow-xl relative">
+                    <img src="{{ url_for('static', filename='images/order_pay.gif') }}" alt="Pesan & Bayar" class="w-16 h-16 object-contain">
+                    <span class="absolute -top-3 -right-3 bg-green-800 text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">2</span>
+                </div>
+                <h3 class="text-3xl font-semibold text-gray-800 mb-4">2. Pesan & Bayar</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">Pilih menu, sesuaikan jumlah, dan selesaikan pembayaran. Proses cepat, aman, dan tanpa kontak langsung.</p>
+            </div>
+
+            <!-- Step 3: Ambil Makananmu -->
+            <div class="flex flex-col items-center p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 animate-fade-in-delay-3">
+                <div class="bg-purple-600 text-white p-6 rounded-full mb-6 shadow-xl relative">
+                    <img src="{{ url_for('static', filename='images/pickup_food.gif') }}" alt="Ambil Makanan" class="w-16 h-16 object-contain">
+                    <span class="absolute -top-3 -right-3 bg-purple-800 text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">3</span>
+                </div>
+                <h3 class="text-3xl font-semibold text-gray-800 mb-4">3. Ambil Makananmu</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">Dapatkan notifikasi saat pesananmu siap. Cukup tunjukkan kode dan makanan lezatmu sudah menunggu tanpa antre!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="bg-gradient-to-r from-emerald-600 to-green-700 py-20 mt-12 rounded-lg shadow-2xl text-white text-center">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Mulai Digitalisasi Kantin Anda Sekarang!</h2>
+        <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90">
+            Bergabunglah dengan FoodCourt dan transformasikan pengalaman makan di kantin menjadi lebih modern, efisien, dan menguntungkan.
+        </p>
+        <a href="{{ url_for('register') }}" 
+           class="inline-block bg-white text-green-800 font-bold py-4 px-10 rounded-full shadow-xl 
+                  transform hover:scale-105 transition duration-300 ease-in-out text-lg tracking-wide 
+                  focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-50">
+            Daftar Gratis Sebagai Pengelola
+        </a>
+    </div>
+</section>
+
+<!-- Optional: Testimonials Section -->
+<section class="py-20 bg-white rounded-lg shadow-xl mt-12">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-16 leading-tight">Apa Kata Pengguna Kami?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center animate-fade-in-delay-4">
+                <p class="text-xl italic text-gray-700 mb-6">"FoodCourt benar-benar mengubah cara kami mengelola kantin. Pesanan jadi lebih teratur, dan pendapatan meningkat drastis!"</p>
+                <p class="font-semibold text-green-700">- Ibu Tina, Pemilik Kantin Enak</p>
+            </div>
+            <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center animate-fade-in-delay-5">
+                <p class="text-xl italic text-gray-700 mb-6">"Saya tidak perlu antre lagi! Pesan dari kelas, tinggal ambil pas jam istirahat. Simpel dan cepat!"</p>
+                <p class="font-semibold text-green-700">- Budi, Mahasiswa</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    /* Subtle background pattern for hero section - can be replaced with a real image if desired */
+    .bg-pattern {
+        background-image: url('data:image/svg+xml,%3Csvg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h8v8H0V0zm8 8h8v8H8V8z" fill="%23d1fae5"/%3E%3C/svg%3E');
+    }
+
+    /* Animations */
+    .animate-fade-in-up {
+        animation: fadeInUp 1s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in-delay-1 { animation: fadeIn 1s ease-out forwards 0.3s; opacity: 0; }
+    .animate-fade-in-delay-2 { animation: fadeIn 1s ease-out forwards 0.6s; opacity: 0; }
+    .animate-fade-in-delay-3 { animation: fadeIn 1s ease-out forwards 0.9s; opacity: 0; }
+    .animate-fade-in-delay-4 { animation: fadeIn 1s ease-out forwards 1.2s; opacity: 0; }
+    .animate-fade-in-delay-5 { animation: fadeIn 1s ease-out forwards 1.5s; opacity: 0; }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+{% endblock %}

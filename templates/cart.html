@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Keranjang Belanja{% endblock %}
+
+{% block content %}
+<section class="py-8">
+    <h2 class="text-4xl font-bold text-center text-green-700 mb-8">Keranjang Belanja Anda</h2>
+
+    {% if cart_items %}
+        <div class="space-y-6">
+            {% for menu_id, item in cart_items.items() %}
+            <div class="flex items-center bg-gray-50 p-5 rounded-lg shadow-md">
+                <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}"
+                     class="w-24 h-24 object-cover rounded-md mr-6 shadow-sm">
+                <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-gray-800">{{ item.name }}</h3>
+                    <p class="text-gray-600 text-lg">Harga: Rp {{ "{:,.0f}".format(item.price) }}</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <form action="{{ url_for('update_cart', menu_id=menu_id) }}" method="POST" class="flex items-center gap-2">
+                        <label for="qty-{{ menu_id }}" class="text-gray-700 font-medium">Jumlah:</label>
+                        <input type="number" id="qty-{{ menu_id }}" name="quantity" value="{{ item.quantity }}" min="0"
+                               class="w-20 px-3 py-2 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-sm transition duration-300">
+                            Update
+                        </button>
+                    </form>
+                </div>
+                <div class="ml-auto text-right">
+                    <p class="text-lg font-semibold text-gray-800">Subtotal:</p>
+                    <p class="text-xl font-bold text-green-700">Rp {{ "{:,.0f}".format(item.price * item.quantity) }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="mt-10 pt-6 border-t-2 border-gray-200 flex justify-end items-center">
+            <h3 class="text-3xl font-bold text-gray-800 mr-6">Total Belanja:</h3>
+            <p class="text-4xl font-extrabold text-green-700">Rp {{ "{:,.0f}".format(total_price) }}</p>
+            <a href="{{ url_for('checkout') }}" class="ml-8 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                Lanjutkan ke Pembayaran
+            </a>
+        </div>
+    {% else %}
+        <div class="text-center py-10">
+            <p class="text-xl text-gray-500 mb-6">Keranjang Anda kosong, ayo mulai belanja!</p>
+            <a href="{{ url_for('menu_list') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                Mulai Belanja
+            </a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

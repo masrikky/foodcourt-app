@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<section class="max-w-md mx-auto p-8 bg-gray-50 rounded-lg shadow-md border border-gray-200">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Login Akun</h2>
+    <form method="POST" action="{{ url_for('login') }}" class="space-y-6">
+        <div>
+            <label for="username" class="block text-gray-700 text-sm font-medium mb-2">Username:</label>
+            <input type="text" id="username" name="username" required
+                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">
+        </div>
+        <div>
+            <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password:</label>
+            <input type="password" id="password" name="password" required
+                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">
+        </div>
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md shadow-md transition duration-300 ease-in-out">
+            Login
+        </button>
+    </form>
+    <p class="text-center text-gray-600 mt-6">
+        Belum punya akun? <a href="{{ url_for('register') }}" class="text-green-600 hover:underline font-semibold">Daftar di sini</a>
+    </p>
+</section>
+{% endblock %}
